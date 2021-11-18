@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>밀키트 추천 SET</title>
+</head>
+<body>
+	<h1>밀키트 추천이요</h1>	<!--  -->
+	<ul th:each="set,index : ${setList}">
+		<li>
+			<ul>
+				<li><a href="/mealkit/chooseSet" 		
+				th:href="@{/mealkit/chooseSet(category=${index.index+1})}" th:text="${set.name}">세트명</a><br></li>
+										<!-- ${index.index+1} = 반복문으로 1~5해줄 때  -->
+				<li th:text="${set.content}">내용</li>
+			</ul>
+		</li>
+	</ul>
+	
+	<!--<a href="/mealkit/chooseSet?category=1">벌크업 뿌아아아악!</a> <br>
+	 <a href="/mealkit/chooseSet?category=2">몸짱을 위하여!!</a><br>
+	<a href="/mealkit/chooseSet?category=3">바디프로필</a><br>
+	<a href="/mealkit/chooseSet?category=4">다이어트</a><br>
+	<a href="/mealkit/chooseSet?category=5">채식</a> -->
+	
+	
+</body>
+</html>

@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>밀키트 따로 홈화면</title>
+</head>
+<body>
+	<a href="/mealkit">밀키트 만들기</a>
+	<a href="/mealkitset">밀키트 추천</a>
+</body>
+</html>

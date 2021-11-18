@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>밀키트 추천 SET</title>
+</head>
+<body>
+	<h1>밀키트 추천이요</h1>
+	<a href="/mealkit/chooseSet?category=1">벌크업 뿌아아아악!</a>
+	<a href="/mealkit/chooseSet?category=2">몸짱을 위하여!!</a>
+	<a href="/mealkit/chooseSet?category=3">바디프로필</a>
+	<a href="/mealkit/chooseSet?category=4">다이어트</a>
+	<a href="/mealkit/chooseSet?category=5">채식</a>
+</body>
+</html>
