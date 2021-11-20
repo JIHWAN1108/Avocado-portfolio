@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>set1 page</title>
+</head>
+<body>
+	<h2>welcome to set5</h2>
+	<ul th:each="set : ${setList}">	
+		<li>
+			<ul>
+				<li>
+				<a href="/mealkit/chooseDetail"  th:text="${set.name}">세트명</a>
+				</li>
+				<li th:text="${set.price}">가격</li>
+			</ul>
+		</li>
+	</ul>
+</body>
+</html>

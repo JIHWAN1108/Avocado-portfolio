@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.homet.model.Mealkit;
 import com.homet.model.SetMenu;
@@ -53,19 +54,21 @@ public class MealkitController {
 	public String setList1(Model model) {
 		List<SetMenu> setList = new ArrayList<SetMenu>();
 		setList = service.getSetByCategory("bulk");	// 인자랑 db테이블의 category랑 이름 같게하면 같은게 나옴
-		System.out.println(setList);
 		model.addAttribute("setList",setList);
 		return "kit/set1.html";
 	}
 	
+	
+	
 	@RequestMapping(value = "/chooseDetail",params = "category=1")
-	public String setDetail1(Model model) {
+	public String setDetail1(Model model,@RequestParam String param) {
+//		param=service.getByIdx(0)
 		List<SetMenu> setList = new ArrayList<SetMenu>();
 		setList = service.getSetByCategory("bulk");	// 인자랑 db테이블의 category랑 이름 같게하면 같은게 나옴
-		System.out.println(setList);
 		model.addAttribute("setList",setList);
 		return "kit/set1detail.html";
 	}
+	
 	
 	
 	@RequestMapping(value = "/chooseSet",params = "category=2")
@@ -79,7 +82,6 @@ public class MealkitController {
 	public String setDetail2(Model model) {
 		List<SetMenu> setList = new ArrayList<SetMenu>();
 		setList = service.getSetByCategory("balance");	// 인자랑 db테이블의 category랑 이름 같게하면 같은게 나옴
-		System.out.println(setList);
 		model.addAttribute("setList",setList);
 		return "kit/set2detail.html";
 	}
@@ -95,7 +97,6 @@ public class MealkitController {
 	public String setDetail3(Model model) {
 		List<SetMenu> setList = new ArrayList<SetMenu>();
 		setList = service.getSetByCategory("bodyprofile");	// 인자랑 db테이블의 category랑 이름 같게하면 같은게 나옴
-		System.out.println(setList);
 		model.addAttribute("setList",setList);
 		return "kit/set3detail.html";
 	}
@@ -110,7 +111,6 @@ public class MealkitController {
 	public String setDetail4(Model model) {
 		List<SetMenu> setList = new ArrayList<SetMenu>();
 		setList = service.getSetByCategory("diet");	// 인자랑 db테이블의 category랑 이름 같게하면 같은게 나옴
-		System.out.println(setList);
 		model.addAttribute("setList",setList);
 		return "kit/set4detail.html";
 	}
@@ -126,7 +126,6 @@ public class MealkitController {
 	public String setDetail5(Model model) {
 		List<SetMenu> setList = new ArrayList<SetMenu>();
 		setList = service.getSetByCategory("salad");	// 인자랑 db테이블의 category랑 이름 같게하면 같은게 나옴
-		System.out.println(setList);
 		model.addAttribute("setList",setList);
 		return "kit/set5detail.html";
 	}
