@@ -11,7 +11,7 @@ import com.homet.model.SetMenu;
 @Mapper	//어노테이션 쓰려면 mybatis 3.0 이상이어야 함.
 public interface MealkitMapper {
 	 List<Mealkit> getByCategory(String category);
-	 Mealkit getByIdx(int idx);
+	 Mealkit getByIdx(int midx);
 	 void insertOrder(Orders order);
 	 List<Orders> getOrderByNickname(String nickname);
 	 List<SetMenu> getSetByCategory(String category);

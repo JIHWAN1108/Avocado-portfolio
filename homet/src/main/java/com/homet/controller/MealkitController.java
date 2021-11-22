@@ -2,6 +2,7 @@ package com.homet.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,18 +56,23 @@ public class MealkitController {
 		List<SetMenu> setList = new ArrayList<SetMenu>();
 		setList = service.getSetByCategory("bulk");	// 인자랑 db테이블의 category랑 이름 같게하면 같은게 나옴
 		model.addAttribute("setList",setList);
-		return "kit/set1.html";
+		return "kit/set1";
 	}
 	
 	
 	
-	@RequestMapping(value = "/chooseDetail",params = "category=1")
-	public String setDetail1(Model model,@RequestParam String param) {
-//		param=service.getByIdx(0)
-		List<SetMenu> setList = new ArrayList<SetMenu>();
-		setList = service.getSetByCategory("bulk");	// 인자랑 db테이블의 category랑 이름 같게하면 같은게 나옴
-		model.addAttribute("setList",setList);
-		return "kit/set1detail.html";
+	@RequestMapping(value = "/chooseDetail")
+	public String setDetail1(Model model, @RequestParam String idx_list) {
+		System.out.println(idx_list);
+		List<Mealkit> meal_list = new ArrayList<Mealkit>();
+		StringTokenizer token = new StringTokenizer(idx_list,"/");
+		while(token.hasMoreTokens()) {
+			Mealkit meal = service.getByIdx(Integer.parseInt(token.nextToken()));
+			meal_list.add(meal);
+		}
+		
+		model.addAttribute("meal_list",meal_list);
+		return "kit/set1detail";
 	}
 	
 	
@@ -78,13 +84,6 @@ public class MealkitController {
 		model.addAttribute("setList",setList);
 		return "kit/set2.html";
 	}
-	@RequestMapping(value = "/chooseDetail",params = "category=2")
-	public String setDetail2(Model model) {
-		List<SetMenu> setList = new ArrayList<SetMenu>();
-		setList = service.getSetByCategory("balance");	// 인자랑 db테이블의 category랑 이름 같게하면 같은게 나옴
-		model.addAttribute("setList",setList);
-		return "kit/set2detail.html";
-	}
 	
 	@RequestMapping(value = "/chooseSet",params = "category=3")
 	public String setList3(Model model) {
@@ -93,26 +92,12 @@ public class MealkitController {
 		model.addAttribute("setList",setList);
 		return "kit/set3.html";
 	}
-	@RequestMapping(value = "/chooseDetail",params = "category=3")
-	public String setDetail3(Model model) {
-		List<SetMenu> setList = new ArrayList<SetMenu>();
-		setList = service.getSetByCategory("bodyprofile");	// 인자랑 db테이블의 category랑 이름 같게하면 같은게 나옴
-		model.addAttribute("setList",setList);
-		return "kit/set3detail.html";
-	}
 	@RequestMapping(value = "/chooseSet",params = "category=4")
 	public String setList4(Model model) {
 		List<SetMenu> setList = new ArrayList<SetMenu>();
 		setList = service.getSetByCategory("diet");	// 인자랑 db테이블의 category랑 이름 같게하면 같은게 나옴
 		model.addAttribute("setList",setList);
 		return "kit/set4.html";
-	}
-	@RequestMapping(value = "/chooseDetail",params = "category=4")
-	public String setDetail4(Model model) {
-		List<SetMenu> setList = new ArrayList<SetMenu>();
-		setList = service.getSetByCategory("diet");	// 인자랑 db테이블의 category랑 이름 같게하면 같은게 나옴
-		model.addAttribute("setList",setList);
-		return "kit/set4detail.html";
 	}
 	@RequestMapping(value = "/chooseSet",params = "category=5")
 	public String setList5(Model model) {
@@ -122,12 +107,5 @@ public class MealkitController {
 		return "kit/set5.html";
 	}
 	
-	@RequestMapping(value = "/chooseDetail",params = "category=5")
-	public String setDetail5(Model model) {
-		List<SetMenu> setList = new ArrayList<SetMenu>();
-		setList = service.getSetByCategory("salad");	// 인자랑 db테이블의 category랑 이름 같게하면 같은게 나옴
-		model.addAttribute("setList",setList);
-		return "kit/set5detail.html";
-	}
 	
 }
