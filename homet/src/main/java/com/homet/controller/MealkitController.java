@@ -50,7 +50,7 @@ public class MealkitController {
 	}
 	
 	
-	//11.17(21:20) 밀키트 BEST 추천 페이지 5개
+	//11.17(21:20) 밀키트 BEST 추천 페이지 5개 (category=1,2,3,4,5)
 	@RequestMapping(value = "/chooseSet",params = "category=1")
 	public String setList1(Model model) {
 		List<SetMenu> setList = new ArrayList<SetMenu>();
@@ -59,8 +59,40 @@ public class MealkitController {
 		return "kit/set1";
 	}
 	
+	@RequestMapping(value = "/chooseSet",params = "category=2")
+	public String setList2(Model model) {
+		List<SetMenu> setList = new ArrayList<SetMenu>();
+		setList = service.getSetByCategory("balance");	// 인자랑 db테이블의 category랑 이름 같게하면 같은게 나옴
+		model.addAttribute("setList",setList);
+		return "kit/set2";
+	}
 	
+	@RequestMapping(value = "/chooseSet",params = "category=3")
+	public String setList3(Model model) {
+		List<SetMenu> setList = new ArrayList<SetMenu>();
+		setList = service.getSetByCategory("bodyprofile");	// 인자랑 db테이블의 category랑 이름 같게하면 같은게 나옴
+		model.addAttribute("setList",setList);
+		return "kit/set3";
+	}
 	
+	@RequestMapping(value = "/chooseSet",params = "category=4")
+	public String setList4(Model model) {
+		List<SetMenu> setList = new ArrayList<SetMenu>();
+		setList = service.getSetByCategory("diet");	// 인자랑 db테이블의 category랑 이름 같게하면 같은게 나옴
+		model.addAttribute("setList",setList);
+		return "kit/set4";
+	}
+	
+	@RequestMapping(value = "/chooseSet",params = "category=5")
+	public String setList5(Model model) {
+		List<SetMenu> setList = new ArrayList<SetMenu>();
+		setList = service.getSetByCategory("salad");	// 인자랑 db테이블의 category랑 이름 같게하면 같은게 나옴
+		model.addAttribute("setList",setList);
+		return "kit/set5";
+	}
+	
+	//11.20(20:30) 밀키트 추천페이지 detail가는 핸들러메소드. (detail에서 각 토큰으로 나눈 idx에 해당하는 이름, 가격 출력)
+	// 추가 개선사항 -> detail 페이지와 이 메소드는 하나로 두고, 페이지에서 if문 사용해서 category별 제목 다르게 나오게 하기.
 	@RequestMapping(value = "/chooseDetail")
 	public String setDetail1(Model model, @RequestParam String idx_list) {
 		System.out.println(idx_list);
@@ -75,37 +107,5 @@ public class MealkitController {
 		return "kit/set1detail";
 	}
 	
-	
-	
-	@RequestMapping(value = "/chooseSet",params = "category=2")
-	public String setList2(Model model) {
-		List<SetMenu> setList = new ArrayList<SetMenu>();
-		setList = service.getSetByCategory("balance");	// 인자랑 db테이블의 category랑 이름 같게하면 같은게 나옴
-		model.addAttribute("setList",setList);
-		return "kit/set2.html";
-	}
-	
-	@RequestMapping(value = "/chooseSet",params = "category=3")
-	public String setList3(Model model) {
-		List<SetMenu> setList = new ArrayList<SetMenu>();
-		setList = service.getSetByCategory("bodyprofile");	// 인자랑 db테이블의 category랑 이름 같게하면 같은게 나옴
-		model.addAttribute("setList",setList);
-		return "kit/set3.html";
-	}
-	@RequestMapping(value = "/chooseSet",params = "category=4")
-	public String setList4(Model model) {
-		List<SetMenu> setList = new ArrayList<SetMenu>();
-		setList = service.getSetByCategory("diet");	// 인자랑 db테이블의 category랑 이름 같게하면 같은게 나옴
-		model.addAttribute("setList",setList);
-		return "kit/set4.html";
-	}
-	@RequestMapping(value = "/chooseSet",params = "category=5")
-	public String setList5(Model model) {
-		List<SetMenu> setList = new ArrayList<SetMenu>();
-		setList = service.getSetByCategory("salad");	// 인자랑 db테이블의 category랑 이름 같게하면 같은게 나옴
-		model.addAttribute("setList",setList);
-		return "kit/set5.html";
-	}
-	
-	
 }
+
