@@ -14,8 +14,12 @@
    
    	<insert id="insertOrder" parameterType="Orders">
    	insert into orders (nickname,order_list,del_date)
-   	values(#{nickname},#{order_list},#{del_date})
+   	values(#{nickname},#{order_list},DATE_ADD(now(), interval 1 DAY))
    	</insert>
+   	<!-- orderList : 닉네임으로 주문내역 뽑기 -->
+   	<select id="orderList" resultType="Orders" parameterType="String">
+   	select * from orders where nickname=#{nickname}
+   	</select>
    	
    	<select id="getOrderByNickname" resultType="Orders" parameterType="String">
    		select * from orders where nickname = #{nickname}
@@ -25,4 +29,9 @@
    	<select id="getSetByCategory" resultType="setMenu" parameterType="String">
    	select * from set_menu where category = #{category}
    	</select>
+   	
+   	<select id="getSetByIdx" resultType="setMenu" parameterType="int">
+   	select * from set_menu where setidx = #{setidx}
+   	</select>
+   	
   </mapper>

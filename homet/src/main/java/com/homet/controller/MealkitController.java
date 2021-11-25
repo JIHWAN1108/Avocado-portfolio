@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.homet.model.Mealkit;
+import com.homet.model.Orders;
 import com.homet.model.SetMenu;
+import com.homet.model.User;
 import com.homet.service.MealkitService;
 
 @Controller
@@ -94,17 +99,31 @@ public class MealkitController {
 	//11.20(20:30) 밀키트 추천페이지 detail가는 핸들러메소드. (detail에서 각 토큰으로 나눈 idx에 해당하는 이름, 가격 출력)
 	// 추가 개선사항 -> detail 페이지와 이 메소드는 하나로 두고, 페이지에서 if문 사용해서 category별 제목 다르게 나오게 하기.
 	@RequestMapping(value = "/chooseDetail")
-	public String setDetail1(Model model, @RequestParam String idx_list) {
+	public String setDetail1(Model model, @RequestParam String idx_list, String setidx) {
 		System.out.println(idx_list);
+		System.out.println(setidx);
 		List<Mealkit> meal_list = new ArrayList<Mealkit>();
 		StringTokenizer token = new StringTokenizer(idx_list,"/");
 		while(token.hasMoreTokens()) {
 			Mealkit meal = service.getByIdx(Integer.parseInt(token.nextToken()));
 			meal_list.add(meal);
 		}
-		
+		model.addAttribute("setidx",setidx);
 		model.addAttribute("meal_list",meal_list);
-		return "kit/set1detail";
+		return "kit/setdetail";
+	}
+	
+	// 11.23 주문하기
+	@RequestMapping(value="/orderList")
+	public String order(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();		//로그인 한 id의 것만 보여주려고
+		
+		User user = (User)session.getAttribute("user");
+		System.out.println(user);
+		List<Orders> orderList = service.getOrderByNickname(user.getNickname());
+		model.addAttribute("orderList",orderList);
+		System.out.println(orderList);
+		return "kit/shopping";
 	}
 	
 }

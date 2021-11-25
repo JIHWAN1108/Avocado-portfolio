@@ -10,7 +10,7 @@
 		<li>
 			<ul>
 				<li><a href="/mealkit/chooseSet" 		
-				th:href="@{/mealkit/chooseSet(category=${index.index+1})}" th:text="${set.name}">세트명</a><br></li>
+				th:href="@{/mealkit/chooseSet(category=${index.index+1})}" th:text="${set.name}">카테고리별세트명</a></li>
 										<!-- ${index.index+1} = 반복문으로 1~5해줄 때의 파라미터 번호  -->
 				<li th:text="${set.content}">내용</li>
 			</ul>

@@ -43,5 +43,9 @@ public class MealkitServiceImpl implements MealkitService {
 		
 		return dao.getSetByCategory(category);
 	}
+	@Override
+	public List<Orders> orderList(String orderList) {
 	
+		return dao.orderList(orderList);
+	}
 }

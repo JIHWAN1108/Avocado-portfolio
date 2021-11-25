@@ -12,4 +12,5 @@ public interface MealkitService {
 	 void insertOrder(Orders order);
 	 List<Orders> getOrderByNickname(String nickname);
 	 List<SetMenu> getSetByCategory(String category);
+	 List<Orders> orderList(String orderList);
 }
