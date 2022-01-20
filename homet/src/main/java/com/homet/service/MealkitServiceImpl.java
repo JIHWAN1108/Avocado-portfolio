@@ -15,12 +15,12 @@ public class MealkitServiceImpl implements MealkitService {
 	MealkitMapper dao;
 	
 	public MealkitServiceImpl(MealkitMapper dao) {
-		this.dao = dao;
-	} //의존성
+		this.dao=dao;
+	}
 	
 	@Override
 	public List<Mealkit> getByCategory(String category) {
-		return dao.getByCategory(category);
+		return dao.getByCategory(category); 
 	}
 
 	@Override
@@ -34,18 +34,13 @@ public class MealkitServiceImpl implements MealkitService {
 	}
 
 	@Override
-	public List<Orders> getOrderByNickname(String nickname) {
-		return dao.getOrderByNickname(nickname);
+	public List<Orders> getOrdersByNickname(String nickname) {
+		return dao.getOrdersByNickname(nickname);
 	}
 
 	@Override
 	public List<SetMenu> getSetByCategory(String category) {
-		
 		return dao.getSetByCategory(category);
 	}
-	@Override
-	public List<Orders> orderList(String orderList) {
-	
-		return dao.orderList(orderList);
-	}
+
 }

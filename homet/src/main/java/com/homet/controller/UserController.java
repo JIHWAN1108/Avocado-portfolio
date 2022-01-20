@@ -41,8 +41,8 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/join",params="start=1")
-	public String join() {
-			return "/user/join";
+	public void join() {
+			
 			
 	}
 	
@@ -79,10 +79,13 @@ public class UserController {
     	return "/user/detail";
    	}
     @RequestMapping(value="/delete")
-   	public String delete(@SessionAttribute("user") User user,SessionStatus status){
+   	public String delete(@SessionAttribute("user") User user,SessionStatus status,Model model){
     	service.delete(user.getUidx());
     	status.setComplete();
-    	return "redirect:/";
+    	 String message="지금까지 이용해 주셔서 감사합니다.";
+			model.addAttribute("message",message );  
+			model.addAttribute("url","../login");
+			return "alertLogin";
    	}
     @RequestMapping(value="/mypage")
    	public void mypage(@SessionAttribute("user") User user){
@@ -102,14 +105,17 @@ public class UserController {
     			int index=random.nextInt(25)+65; //A~Z까지 랜덤 알파벳 생성
     			key+=(char)index;
     		}
-    		
     		int numIndex=random.nextInt(9999)+1000; //4자리 랜덤 정수를 생성
     		key+=numIndex;
     		System.out.println("이메일 전송");
     		message.setSubject("인증번호 입력을 위한 메일 전송");
     		message.setText("인증 번호 : "+key);
-    		
+    		 
     		sender.send(message);
+    		 
+
+    	
+    		
             return key;
     	}
      

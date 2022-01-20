@@ -20,8 +20,6 @@
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMethod"/>
     <fullyQualifiedTypeName name="org.slf4j.LoggerFactory"/>
     <fullyQualifiedTypeName name="org.slf4j.Logger"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="com.homet.model.SetMenu"/>
     <fullyQualifiedTypeName name="sun.util.locale.StringTokenIterator"/>
     <fullyQualifiedTypeName name="java.util.StringTokenizer"/>
@@ -34,4 +32,7 @@
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
     <fullyQualifiedTypeName name="com.homet.model.User"/>
     <fullyQualifiedTypeName name="com.homet.model.Orders"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.SessionAttribute"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
 </qualifiedTypeNameHistroy>

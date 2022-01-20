@@ -3,6 +3,10 @@ package com.homet.controller;
 
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import javax.servlet.http.HttpSession; 
 
 import org.springframework.stereotype.Controller; 
@@ -16,6 +20,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.homet.model.Mealkit;
 import com.homet.model.User;
 import com.homet.service.UserService;
 
@@ -24,8 +29,6 @@ import com.homet.service.UserService;
 public class LoginController {
 
 	private final UserService service;
-	
-
 	
 	public LoginController(UserService service) {
 		this.service=service;
@@ -47,12 +50,16 @@ public class LoginController {
 	//메소드 매개변수 (Customer customer 일때, @ModelAttribute("customer") Customer customer 에서 생략된 상태
 	public String loginOk(String email, String password ,Model model,HttpSession session) {  //customer 가 모델객체입니다.(로그인정보 저장된상태)
 		//로그인 정보 일치하는지 확인.	//홈에서 패스워드 지우는 방법2
-		User result = service.login(User.builder().email(email).password(password).build());
+		 User result = service.login(User.builder().email(email).password(password).build());
 		//customer.setPassword(""); //홈에서 패스워드 지우는 방법1
 		if(result != null) {
 			//로그인 성공- session에 result 저장합니다.
 			model.addAttribute("user", result);//위에서 customer를 세션애튜리뷰트 설정함...
 			session.setAttribute("user", result);
+			List<HashMap<String,Object>> cart = new ArrayList<HashMap<String,Object>>();// 추가 : 빈 장바구니 생성
+			List<HashMap<String,Object>> cart_set = new ArrayList<HashMap<String,Object>>();// 추가 : 빈 장바구니 생성
+			session.setAttribute("cart", cart);	// 세션에 장바구니 저장, 장바구니 넣을때마다 갱신하기 위함!
+			session.setAttribute("cart_set", cart_set);	// 세션에 장바구니 저장, 장바구니 넣을때마다 갱신하기 위함!
 			System.out.println(session.getAttribute("user"));
 			System.out.println(model);
 			return "home";   //정상 로그인 후 -> home.jsp(뷰)

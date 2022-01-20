@@ -10,4 +10,5 @@ public interface UserService {
      int idCheck(String email);
      String findId(User user);
      int password(User user);
+     
 }
